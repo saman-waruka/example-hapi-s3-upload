@@ -24,7 +24,6 @@ const init = async () => {
           if (file) {
             await upload(file, name)
               .then(resp => {
-                console.log(" Respons From S3 ====> ", resp);
                 responseFile = { fileUrl: resp.Location };
                 response.fileUrl = resp.Location;
               })
