@@ -2,18 +2,6 @@ require("dotenv").config();
 const aws = require("aws-sdk"); // import aws-sdk
 const FileType = require("file-type");
 
-console.log(
-  "\nSECRET_ACCESS_KEY ",
-  process.env.SECRET_ACCESS_KEY,
-  "\nACCESS_KEY_ID ",
-  process.env.ACCESS_KEY_ID,
-  "\nREGION ",
-  process.env.REGION,
-  "\nBUCKET_NAME ",
-  process.env.BUCKET_NAME,
-  "\nBUCKET_KEY_PREFIX ",
-  process.env.BUCKET_KEY_PREFIX
-);
 // Setting aws configurations
 aws.config.update({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
@@ -36,8 +24,6 @@ const options = { partSize: 10 * 1024 * 1024, queueSize: 1 };
 // "Body" accepts the file
 
 async function upload(file, name) {
-  console.log(" \n\nfile =====> ", file);
-  console.log(" \n\nName =====> ", name);
   try {
     const fileType = await FileType.fromBuffer(file);
     const { ext, mime } = fileType;
@@ -49,10 +35,6 @@ async function upload(file, name) {
       ACL: "public-read",
       ContentType: mime
     };
-    console.log(
-      " \nFileName ====> ",
-      `${process.env.BUCKET_KEY_PREFIX}/${name}.${ext}`
-    );
     let fileResp = null;
     await s3
       .upload(params, options)

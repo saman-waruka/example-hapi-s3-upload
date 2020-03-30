@@ -19,17 +19,11 @@ const init = async () => {
       handler: async (request, h) => {
         const { file, name } = request.payload;
         let response = {};
-        let responseFile = null;
         try {
           if (file) {
-            await upload(file, name)
-              .then(resp => {
-                responseFile = { fileUrl: resp.Location };
-                response.fileUrl = resp.Location;
-              })
-              .catch(err => {
-                responseFile = err.message;
-              });
+            await upload(file, name).then(resp => {
+              response.fileUrl = resp.Location;
+            });
           }
           return response;
         } catch (err) {
