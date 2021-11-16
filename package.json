@@ -20,7 +20,7 @@
   "homepage": "https://github.com/saman-waruka/example-hapi-s3-upload#readme",
   "dependencies": {
     "@hapi/hapi": "^19.1.1",
-    "aws-sdk": "^2.647.0",
+    "aws-sdk": "^2.814.0",
     "dotenv": "^8.2.0",
     "file-type": "^14.1.4"
   }
